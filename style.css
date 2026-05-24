@@ -1,0 +1,169 @@
+/* --- CSS VARIABLES --- */
+:root {
+    --bg-color-1: #e0f2fe;
+    --bg-color-2: #4fc3f7;
+    --text-color: #1a252f;
+    --nav-color: #0277bd;
+    --btn-color: #00b4d8;
+}
+
+/* PERBAIKAN: Import Font Modern & Smooth UI */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+
+* { box-sizing: border-box; font-family: 'Poppins', sans-serif; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body { 
+    display: flex; 
+    background: linear-gradient(135deg, var(--bg-color-1), var(--bg-color-2));
+    background-attachment: fixed;
+    color: var(--text-color);
+    transition: all 0.4s ease-in-out; 
+}
+.hidden { display: none !important; }
+
+/* --- SIDEBAR KIRI --- */
+#sidebar {
+    width: 250px; background-color: var(--nav-color); color: white;
+    height: 100vh; position: fixed; padding: 20px 0;
+    display: flex; flex-direction: column;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.15); z-index: 100;
+}
+#sidebar h2 { text-align: center; margin-bottom: 30px; font-size: 20px; font-weight: 800;}
+#sidebar a {
+    color: #ecf0f1; text-decoration: none; padding: 15px 25px;
+    border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.3s;
+    font-size: 15px;
+}
+#sidebar a:hover { background-color: rgba(0,0,0,0.2); padding-left: 30px; }
+
+/* --- KONTEN UTAMA --- */
+#main-container { margin-left: 250px; width: calc(100% - 250px); padding: 50px; position: relative; }
+
+/* --- TOPBAR & DROPDOWN --- */
+#topbar { position: absolute; top: 25px; right: 50px; display: flex; align-items: center; gap: 15px; }
+#topbar-name { font-weight: 600; font-size: 16px; }
+#topbar-foto { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 3px solid #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.1); cursor: pointer; transition: 0.3s;}
+#topbar-foto:hover { transform: scale(1.1) rotate(5deg); }
+.profile-dropdown {
+    position: absolute; top: 70px; right: 0; background: white; 
+    border-radius: 8px; box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    padding: 10px; z-index: 50; min-width: 150px; text-align: center;
+}
+
+/* --- OVERLAY LOGIN --- */
+#login-overlay {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(8px);
+    display: flex; justify-content: center; align-items: center; z-index: 9999;
+    opacity: 1; transition: 0.3s;
+}
+#login-overlay.hidden { opacity: 0; pointer-events: none; display: flex !important; z-index: -1;}
+.login-box {
+    background: white; padding: 40px; border-radius: 16px; width: 350px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2); color: #333; transform: translateY(0); transition: 0.3s;
+}
+#login-overlay.hidden .login-box { transform: translateY(-50px); }
+.password-wrapper { position: relative; display: flex; align-items: center; }
+.password-wrapper input { padding-right: 40px; }
+#toggle-password { position: absolute; right: 10px; cursor: pointer; font-size: 20px; user-select: none; top: 2px;}
+
+/* --- SECTION UMUM --- */
+.section { margin-bottom: 70px; padding-top: 20px; }
+.section-title { border-bottom: 4px solid var(--btn-color); display: inline-block; margin-bottom: 25px; padding-bottom: 5px; font-weight: 800; font-size: 28px;}
+
+/* --- SECTION BIODATA --- */
+.profile-name-big { font-size: 3.5rem; font-weight: 900; margin-bottom: 5px; line-height: 1.2; letter-spacing: -1px;}
+.profile-sub-info { font-size: 1.1rem; opacity: 0.85; margin-bottom: 40px; }
+.profile-sub-info a { color: var(--text-color); font-weight: 600; text-decoration: none; transition: 0.3s;}
+.profile-sub-info a:hover { color: var(--btn-color); }
+
+/* PERBAIKAN: Align-items center untuk memusatkan teks terhadap foto */
+.bio-grid { display: flex; justify-content: space-between; gap: 50px; align-items: center; }
+.bio-desc { 
+    flex: 1; font-size: 17px; line-height: 1.8; 
+    white-space: pre-wrap; text-align: justify;
+    background: rgba(255,255,255,0.3); backdrop-filter: blur(10px);
+    padding: 30px; border-radius: 20px; border-left: 6px solid var(--btn-color);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+.bio-photo-capsule {
+    width: 280px; min-width: 280px; height: 400px; 
+    border-radius: 140px; overflow: hidden; 
+    border: 10px solid rgba(255,255,255,0.6); box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    transition: 0.5s ease;
+}
+.bio-photo-capsule:hover { border-color: #fff; transform: translateY(-10px); }
+.bio-photo-capsule img { width: 100%; height: 100%; object-fit: cover; }
+
+/* --- PENDIDIKAN --- */
+.edu-card { 
+    background: rgba(255,255,255,0.6); backdrop-filter: blur(5px);
+    padding: 25px; margin-bottom: 20px; border-radius: 12px; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: 0.3s;
+    border: 1px solid rgba(255,255,255,0.8);
+}
+.edu-card:hover { background: rgba(255,255,255,0.9); transform: translateX(5px); box-shadow: 0 6px 15px rgba(0,0,0,0.1);}
+.edu-row-1 { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed rgba(0,0,0,0.1); padding-bottom: 10px; margin-bottom: 10px;}
+.edu-row-1-kiri { font-size: 20px; font-weight: 800; color: var(--nav-color);}
+.edu-row-1-kanan { font-size: 14px; font-weight: 600; opacity: 0.7; background: rgba(0,0,0,0.05); padding: 5px 10px; border-radius: 20px;}
+.edu-row-2 { display: flex; justify-content: space-between; align-items: center; }
+.edu-row-2-kiri { font-size: 16px; font-weight: 600; opacity: 0.8; }
+.edu-row-2-kanan { display: flex; align-items: center; gap: 20px; font-size: 16px;}
+.btn-pdf { background-color: var(--nav-color); color: white; padding: 6px 15px; text-decoration: none; border-radius: 6px; font-size: 13px; font-weight: 600; transition: 0.3s;}
+.btn-pdf:hover { background-color: var(--btn-color); transform: scale(1.05);}
+
+/* --- SKILL --- */
+.skill-list { list-style: none; display: flex; flex-wrap: wrap; gap: 15px; }
+.skill-card { 
+    background: rgba(255,255,255,0.7); backdrop-filter: blur(5px);
+    padding: 12px 25px; border-radius: 30px; font-size: 16px; font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: 0.3s;
+    border: 1px solid rgba(255,255,255,0.5); color: var(--nav-color);
+}
+.skill-card:hover { background: var(--btn-color); color: white; transform: translateY(-5px);}
+
+/* --- PENGALAMAN (GRID WRAP 4 KOLOM) --- */
+.exp-grid-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
+.exp-card { 
+    background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.8); 
+    padding: 20px; border-radius: 16px; box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+    display: flex; flex-direction: column; transition: 0.3s;
+}
+.exp-card:hover { transform: translateY(-8px); background: #fff; box-shadow: 0 15px 25px rgba(0,0,0,0.1);}
+.exp-frame { width: 100%; height: 180px; background: #eee; margin-bottom: 15px; border-radius: 10px; overflow:hidden;}
+.exp-frame img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.exp-card:hover .exp-frame img { transform: scale(1.1); }
+.exp-content { flex: 1; }
+.exp-desc-text { font-size: 14px; opacity: 0.8; margin-bottom: 15px; text-align: justify; line-height: 1.6;}
+.exp-desc-list { font-size: 14px; opacity: 0.8; margin-bottom: 15px; padding-left: 20px; text-align: left; line-height: 1.6;}
+.exp-desc-list li { margin-bottom: 5px; }
+
+/* Responsive Grid */
+@media(max-width: 1200px) { .exp-grid-container { grid-template-columns: repeat(3, 1fr); } }
+@media(max-width: 900px) { .exp-grid-container { grid-template-columns: repeat(2, 1fr); } }
+
+/* --- ADMIN PANEL UMUM --- */
+#admin-panel { background: #fff; color: #333; padding: 40px; border-radius: 16px; border: 2px dashed #ccc; margin-top: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);}
+.form-section { border: 1px solid #eee; padding: 20px; margin-bottom: 30px; border-radius: 10px; background: #fafafa;}
+input, textarea, select { width: 100%; padding: 12px; margin: 8px 0 20px 0; border: 1px solid #ddd; border-radius: 6px; font-family: 'Poppins';}
+input:focus, textarea:focus { outline: none; border-color: var(--btn-color); box-shadow: 0 0 5px rgba(0,180,216,0.3);}
+button { cursor: pointer; padding: 12px 20px; background: var(--btn-color); color: white; border: none; border-radius: 6px; font-weight: 600; transition: 0.2s;}
+button:hover { filter: brightness(0.9); transform: translateY(-2px);}
+.btn-hapus { background: #e74c3c; font-size: 12px; padding: 6px 12px;}
+.btn-edit { background: #f39c12; font-size: 12px; padding: 6px 12px;}
+.admin-only { display: none; }
+body.is-admin .admin-only { display: inline-block; }
+
+/* PERBAIKAN: Gaya untuk Drag and Drop Item */
+.admin-list-item { 
+    background: white; border: 1px solid #ddd; padding: 12px; margin-bottom: 10px; 
+    border-radius: 6px; display: flex; justify-content: space-between; align-items: center;
+    transition: 0.2s;
+}
+.admin-list-item.dragging { opacity: 0.5; background: #f0f8ff; border: 2px dashed var(--btn-color); }
+.drag-handle { cursor: grab; font-size: 20px; color: #aaa; margin-right: 15px; user-select: none; }
+.drag-handle:active { cursor: grabbing; }
+.admin-list-content { flex: 1; display: flex; align-items: center; }

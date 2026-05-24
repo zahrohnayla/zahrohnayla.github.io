@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Portofolio Dinamis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav id="sidebar">
+        <h2>Portofolio</h2>
+        <a href="#sec-biodata">Profil Utama</a>
+        <a href="#sec-pendidikan">Riwayat Pendidikan</a>
+        <a href="#sec-skill">Keahlian Diri</a>
+        <a href="#sec-pengalaman">Projek & Pengalaman</a>
+        
+        <div style="margin-top: auto; padding: 20px;">
+            <button id="btn-toggle-admin" class="hidden" style="width: 100%; margin-bottom: 10px; background: #9b59b6;">Buka Form CRUD</button>
+            <button id="btn-logout" class="hidden" style="width: 100%; background: #e74c3c;">Logout</button>
+        </div>
+    </nav>
+
+    <!-- OVERLAY LOGIN -->
+    <div id="login-overlay" class="hidden">
+        <div class="login-box">
+            <h2 style="margin-bottom: 25px; text-align: center; color:var(--nav-color);">Login Admin</h2>
+            <label>Email:</label>
+            <input type="email" id="login-email" placeholder="admin@email.com">
+            <label>Password:</label>
+            <div class="password-wrapper">
+                <input type="password" id="login-password" placeholder="Masukkan Password">
+                <span id="toggle-password">👁️</span> 
+            </div>
+            <button id="btn-login-submit" style="width: 100%; margin-top: 15px;">Masuk</button>
+            <button id="btn-login-close" style="width: 100%; background: #95a5a6; margin-top: 10px;">Kembali</button>
+        </div>
+    </div>
+
+    <div id="main-container">
+        
+        <div id="topbar">
+            <span id="topbar-name">Memuat...</span>
+            <div style="position: relative;">
+                <img id="topbar-foto" src="https://via.placeholder.com/50" alt="Profil">
+                <div id="profile-dropdown" class="profile-dropdown hidden">
+                    <button id="btn-show-login-modal" style="width: 100%; background: var(--btn-color);">Masuk Admin</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="public-layout">
+            
+            <section id="sec-biodata" class="section" style="padding-top: 60px;">
+                <h1 id="tampil-nama-besar" class="profile-name-big">Memuat...</h1>
+                <div id="tampil-kontak-link" class="profile-sub-info">Memuat kontak...</div>
+
+                <div class="bio-grid">
+                    <div class="bio-desc" id="tampil-deskripsi">Memuat deskripsi diri...</div>
+                    <div class="bio-photo-capsule">
+                        <img id="tampil-foto-full" src="https://via.placeholder.com/300x450?text=Foto" alt="Foto Full">
+                    </div>
+                </div>
+            </section>
+
+            <section id="sec-pendidikan" class="section">
+                <h2 class="section-title">Riwayat Pendidikan</h2>
+                <div id="tampil-pendidikan">Loading data...</div>
+            </section>
+
+            <section id="sec-skill" class="section">
+                <h2 class="section-title">Keahlian (Skill)</h2>
+                <ul class="skill-list" id="tampil-skill">
+                    <li>Loading...</li>
+                </ul>
+            </section>
+
+            <section id="sec-pengalaman" class="section">
+                <h2 class="section-title">Pengalaman & Projek</h2>
+                <div class="exp-grid-container" id="tampil-pengalaman">
+                    Loading data...
+                </div>
+            </section>
+        </div>
+
+        <!-- AREA ADMIN (FORM CRUD) -->
+        <div id="admin-layout" class="hidden">
+            <div id="admin-panel">
+                <h1 style="color: var(--nav-color); border-bottom: 2px solid #eee; margin-bottom: 20px; padding-bottom: 10px;">DASHBOARD ADMINISTRATOR</h1>
+                <button id="btn-close-admin" style="background: #7f8c8d; margin-bottom: 30px;">← Kembali ke Tampilan Web</button>
+                
+                <!-- 1. CRUD BIODATA -->
+                <div class="form-section">
+                    <h3>1. Profil & Tema Web</h3>
+                    <input type="text" id="bio-nama" placeholder="Nama Lengkap Cetak Tebal">
+                    <input type="email" id="bio-email" placeholder="Email">
+                    <input type="text" id="bio-wa" placeholder="Nomor WA">
+                    
+                    <div style="background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #ddd; margin: 15px 0;">
+                        <h4 style="margin-bottom:10px;">🎨 Warna Tema Web</h4>
+                        <div style="display:flex; gap: 20px; flex-wrap: wrap;">
+                            <label>Bg Gradasi 1: <input type="color" id="color-bg1" value="#e0f2fe" style="height:35px;"></label>
+                            <label>Bg Gradasi 2: <input type="color" id="color-bg2" value="#4fc3f7" style="height:35px;"></label>
+                            <label>Teks: <input type="color" id="color-text" value="#1a252f" style="height:35px;"></label>
+                            <label>Navbar: <input type="color" id="color-nav" value="#0277bd" style="height:35px;"></label>
+                            <label>Tombol: <input type="color" id="color-btn" value="#00b4d8" style="height:35px;"></label>
+                        </div>
+                    </div>
+
+                    <label>Path Foto Profil Kecil: <input type="text" id="bio-foto-profil"></label>
+                    <label>Path Foto Full Badan (Kapsul): <input type="text" id="bio-foto-full"></label>
+                    
+                    <div id="link-dinamis-container" style="background: #fdf0d5; padding: 15px; margin-top:10px; border-radius: 8px;">
+                        <h4 style="margin-bottom: 10px;">Links Dinamis (Opsional)</h4>
+                    </div>
+                    <button id="btn-tambah-link" style="background:#f39c12; margin-top:10px;">+ Tambah Link</button><br><br>
+                    <button id="btn-simpan-biodata" style="width:100%; font-size:16px;">Simpan Profil & Tema</button>
+                </div>
+
+                <!-- 2. CRUD DESKRIPSI -->
+                <div class="form-section">
+                    <h3>2. Deskripsi Diri</h3>
+                    <p style="font-size: 12px; color: #666; margin-bottom: 10px;">*Gunakan tombol Enter untuk baris baru. Teks akan otomatis rata kanan-kiri.</p>
+                    <textarea id="desc-text" rows="8" placeholder="Ceritakan tentang diri Anda..."></textarea>
+                    <button id="btn-simpan-desc">Simpan Deskripsi</button>
+                </div>
+
+                <!-- 3. CRUD PENDIDIKAN -->
+                <div class="form-section">
+                    <h3 style="border-bottom: 1px solid #ddd; padding-bottom:10px; margin-bottom:15px;">3. Data Pendidikan</h3>
+                    
+                    <div style="background: white; padding: 20px; border: 1px dashed #ccc; border-radius: 8px; margin-bottom:20px;">
+                        <input type="text" id="edu-instansi" placeholder="Asal Sekolah / Univ (Wajib)">
+                        <input type="text" id="edu-gelar" placeholder="Gelar (Misal: S.Kom) - Akan disisipkan ke Nama Profil">
+                        <input type="text" id="edu-lokasi" placeholder="Lokasi (Opsional)">
+                        <input type="text" id="edu-jurusan" placeholder="Jurusan / Prodi (Opsional)">
+                        <input type="text" id="edu-ipk" placeholder="IPK (Opsional, misal: 3.85)">
+                        <label>Mulai: <input type="date" id="edu-mulai" style="width:auto;"></label> 
+                        <label>Lulus: <input type="date" id="edu-lulus" style="width:auto;"></label> 
+                        <label><input type="checkbox" id="edu-masih-belajar"> Masih Belajar</label><br>
+                        <label>Link PDF Transkrip: <input type="text" id="edu-file"></label><br>
+                        <button id="btn-tambah-edu">+ Tambah / Simpan Data</button>
+                        <button id="btn-batal-edit-edu" class="hidden" style="background:#7f8c8d;">Batal Edit</button>
+                    </div>
+                    
+                    <h4 style="margin-bottom:10px; color:var(--nav-color);">Daftar Pendidikan (Drag ☰ untuk mengubah urutan)</h4>
+                    <div id="admin-list-edu" class="sortable-list">Loading...</div>
+                </div>
+
+                <!-- 4. CRUD SKILL -->
+                <div class="form-section">
+                    <h3 style="border-bottom: 1px solid #ddd; padding-bottom:10px; margin-bottom:15px;">4. Data Keahlian (Skill)</h3>
+                    <div style="background: white; padding: 20px; border: 1px dashed #ccc; border-radius: 8px; margin-bottom:20px;">
+                        <input type="text" id="skill-judul" placeholder="Nama Skill (Wajib)">
+                        <input type="text" id="skill-desc" placeholder="Deskripsi Skill (Hanya tampil di Admin)">
+                        <button id="btn-tambah-skill">+ Tambah / Simpan Skill</button>
+                        <button id="btn-batal-edit-skill" class="hidden" style="background:#7f8c8d;">Batal Edit</button>
+                    </div>
+                    
+                    <h4 style="margin-bottom:10px; color:var(--nav-color);">Daftar Skill (Drag ☰ untuk mengubah urutan)</h4>
+                    <div id="admin-list-skill" class="sortable-list">Loading...</div>
+                </div>
+
+                <!-- 5. CRUD PENGALAMAN -->
+                <div class="form-section">
+                    <h3 style="border-bottom: 1px solid #ddd; padding-bottom:10px; margin-bottom:15px;">5. Data Pengalaman / Projek</h3>
+                    <div style="background: white; padding: 20px; border: 1px dashed #ccc; border-radius: 8px; margin-bottom:20px;">
+                        <input type="text" id="exp-judul" placeholder="Nama Projek/Pengalaman (Wajib)">
+                        
+                        <select id="exp-tipe-desc">
+                            <option value="paragraf">Tipe Penulisan: Paragraf</option>
+                            <option value="poin">Tipe Penulisan: Poin-poin</option>
+                        </select>
+                        
+                        <textarea id="exp-desc" rows="5" placeholder="Ketik deskripsi panjang..."></textarea>
+                        
+                        <div id="exp-poin-wrapper" class="hidden" style="background: #f8f9fa; padding: 15px; border-radius: 5px; margin-bottom: 15px; border: 1px solid #eee;">
+                            <div id="exp-poin-container"></div>
+                            <button id="btn-add-poin-input" style="background: #27ae60; font-size: 13px;">+ Tambah Poin Baru</button>
+                        </div>
+
+                        <input type="text" id="exp-link" placeholder="Link Projek (Opsional)">
+                        <label>Link Gambar/Sertifikat: <input type="text" id="exp-file"></label><br>
+                        
+                        <button id="btn-tambah-exp">+ Tambah / Simpan Pengalaman</button>
+                        <button id="btn-batal-edit-exp" class="hidden" style="background:#7f8c8d;">Batal Edit</button>
+                    </div>
+
+                    <h4 style="margin-bottom:10px; color:var(--nav-color);">Daftar Pengalaman (Drag ☰ untuk mengubah urutan)</h4>
+                    <div id="admin-list-exp" class="sortable-list">Loading...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
